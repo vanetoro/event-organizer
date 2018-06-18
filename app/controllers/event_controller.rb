@@ -6,7 +6,7 @@ class EventController < ApplicationController
  end
 
  get '/events/all' do
-   @events = Event.all
+   @events = Event.alld
   erb :'/events/all_events'
  end
 
@@ -16,7 +16,8 @@ class EventController < ApplicationController
  end
 
  get '/events/:slug' do
-  #  @event = Event.find_by(event_name: params[:slug])
+   @event = Event.find_by_slug(params[:slug])
+
    erb :'/events/show_event'
  end
 
