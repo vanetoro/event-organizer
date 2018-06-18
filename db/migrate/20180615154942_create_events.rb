@@ -3,6 +3,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
     create_table :events do |t|
       t.string :event_name
       t.text :date
+      t.integer :host_id
     end
   end
 end

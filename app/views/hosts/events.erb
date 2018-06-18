@@ -1,5 +1,6 @@
-These are all your events
+<h3>These are all your events</h3>
 
 <%@events.each do |event|%>
-<%=event.name event.date%>
+Event: <%=event.event_name %></br>
+Date: <%=event.date%></br>
 <%end%>

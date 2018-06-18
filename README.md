@@ -1,1 +1,1 @@
-# event-organizer-new
+# event-organizer

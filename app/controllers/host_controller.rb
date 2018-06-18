@@ -13,10 +13,12 @@ class HostController < ApplicationController
   get '/events/:slug' do
   @host = Host.find_by_slug(params[:slug])
   @events = @host.events
+
   erb :'/hosts/events'
   end
 
   post '/events' do
+    # binding.pry
     @host = Host.find_by(username: params[:username])
     # binding.pry
     redirect "/events/#{@host.slug}"
