@@ -10,7 +10,7 @@ class HostController < ApplicationController
   erb :'/hosts/signup'
   end
 
-  get '/events/:slug' do
+  get '/events/:slug/all' do
   @host = Host.find_by_slug(params[:slug])
   @events = @host.events
 
@@ -18,18 +18,12 @@ class HostController < ApplicationController
   end
 
   post '/events' do
-    # binding.pry
     @host = Host.find_by(username: params[:username])
-    # binding.pry
-    redirect "/events/#{@host.slug}"
+    redirect "/events/#{@host.slug}/all"
   end
 
   post '/create_host' do
     @host = Host.create(params)
     redirect '/events'
   end
-  # post '/users/:slug' do
-  #   @host = Host.find_by_slug(params[:slug])
-  #
-  # end
 end
