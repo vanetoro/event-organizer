@@ -1,7 +1,14 @@
-Enter the event information below.
-<form action="" method="post">
-  Event:<input type="text" name='event_name'></br>
-  Location: <input type="text" name='location'></br>
-  Date:<input type="datetime-local" name="date"></br>
+<h4>Enter the event information below.</h4>
+<form action="/create_event" method="post">
+  Date:(mm/dd/yy)<input type="text" name="day"></br>
+  Event:<input type="text" name='name'></br>
+  Venue: <%@venues.each do |venue|%>
+  <%=venue.name%><input type="checkbox" name="venue" value="<%=venue.id%>"id ="<%=venue.id%>">
+  <%end%></br>
+
+
+  If the venue isn't listed above please add it
+  Name: <input type="text" name="new_venue">
+  Location: <input type="text" name="location"></br>
   <input type="submit" value="Create Event">
 </form>

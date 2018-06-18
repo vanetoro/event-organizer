@@ -1,12 +1,12 @@
 class EventController < ApplicationController
 
  get '/new' do
-
+   @venues = Venue.all
    erb :'/events/create_event'
  end
 
  get '/events/all' do
-   @events = Event.alld
+   @events = Event.all
   erb :'/events/all_events'
  end
 
@@ -21,9 +21,10 @@ class EventController < ApplicationController
    erb :'/events/show_event'
  end
 
- post '/events' do
+ post '/create_event' do
+   binding.pry
    @event = Event.create(params)
-   # user?
+
    redirect '/'
 end
 

@@ -2,6 +2,6 @@
 <h4>These are all your events</h4>
 <ul>
 <%@events.each do |event|%>
-<a href="/events/<%=event.slug%>"><li>Date: <%=event.date%> Event: <%=event.event_name %></li></a>
+<a href="/events/<%=event.slug%>"><li>Date: <%=event.date%> Event: <%=event.name %> @ Location <%=event.venue %> </li></a>
 <%end%>
 </ul>
