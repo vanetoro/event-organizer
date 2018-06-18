@@ -18,7 +18,7 @@ class HostController < ApplicationController
   end
 
   post '/events' do
-    @host = Host.find_by(username: params[:username])
+    @host = Host.find_by_slug(params[:username])
     redirect "/#{@host.slug}/events"
   end
 

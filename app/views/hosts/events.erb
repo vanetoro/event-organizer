@@ -1,6 +1,7 @@
-<h3>These are all your events</h3>
-
+<h3>Welcome <%=@host.username%>!!</h3>
+<h4>These are all your events</h4>
+<ul>
 <%@events.each do |event|%>
-Event: <%=event.event_name %></br>
-Date: <%=event.date%></br>
+<li>Date: <%=event.date%> Event: <%=event.event_name %></li>
 <%end%>
+</ul>
