@@ -7,8 +7,12 @@ class EventController < ApplicationController
 
  get '/events/all' do
    @events = Event.all
-   binding.pry
   erb :'/events/all_events'
+ end
+
+ get '/events/new' do
+
+   erb :'/events/create_event'
  end
 
 end

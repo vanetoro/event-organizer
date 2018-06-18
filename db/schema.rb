@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2018_06_15_154942) do
 
   create_table "events", force: :cascade do |t|
     t.string "event_name"
+    t.text "location"
     t.text "date"
     t.integer "host_id"
   end
