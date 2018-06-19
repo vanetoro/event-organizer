@@ -36,7 +36,7 @@ class EventController < ApplicationController
      @host.events << @event
      @venue.events << @event
 
-   redirect "/#{@host.slug}/events"
+   redirect "/events"
  end
 
  patch '/edit_event/:slug' do
