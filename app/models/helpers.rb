@@ -5,7 +5,7 @@ class Helpers < ActiveRecord::Base
     @host = Host.find(session[:host_id])
   end
 
-  def logged_in?
+  def self.logged_in?(session)
     !!session[:user_id]
   end
 end

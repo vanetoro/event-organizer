@@ -1,8 +1,12 @@
 class HostController < ApplicationController
 
   get '/login' do
-
-  erb :'/hosts/login'
+    if Helpers.logged_in?(session)
+      binding.pry
+      redirect "/#{@host.slug}/events"
+    else
+      erb :'/hosts/login'
+    end
   end
 
   get '/signup' do
@@ -19,8 +23,13 @@ class HostController < ApplicationController
 
   post '/events' do
     @host = Host.find_by_slug(params[:username])
+    binding.pry
+    if @host
     session[:host_id] = @host.id
     redirect "/#{@host.slug}/events"
+    else
+      redirect '/login'
+    end
   end
 
   post '/create_host' do
