@@ -29,8 +29,10 @@ class EventController < ApplicationController
 
 
  delete '/delete_event/:slug' do
-   Event.find_by_slug(params[:slug]).destroy
-   redirect '/events'
+   @event =  Event.find_by_slug(params[:slug])
+   @host = @event.host
+   @event.destroy
+   redirect "/#{@host.slug}/events"
  end
 
 
