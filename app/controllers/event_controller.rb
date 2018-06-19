@@ -5,6 +5,12 @@ class EventController < ApplicationController
    erb :'/events/create_event'
  end
 
+ get '/events/show_all' do
+  #  binding.pry
+   @events = Event.all
+
+  erb :'/events/all_events'
+ end
  get '/events/:slug' do
    if Helpers.current_user(session)
      @event = Event.find_by_slug(params[:slug])
@@ -14,10 +20,7 @@ class EventController < ApplicationController
    end
  end
 
- get '/events/show_all' do
-   @events = Event.all
-  erb :'/events/all_events'
- end
+
 
  get '/edit_event/:slug' do
    @event = Event.find_by_slug(params[:slug])
@@ -45,14 +48,14 @@ class EventController < ApplicationController
    @event.name = params[:name]
    @event.date = params[:date]
    @event.save
-    redirect "/#{@host.slug}/events"
+    redirect "/events"
  end
 
  delete '/delete_event/:slug' do
    @event =  Event.find_by_slug(params[:slug])
    @host = @event.host
    @event.destroy
-   redirect "/#{@host.slug}/events"
+   redirect "/events"
  end
 
 

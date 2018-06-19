@@ -1,3 +1,7 @@
 a{
-  color: yellow;
+  color: #848383;
+}
+
+a:visited{
+  color: #606060;
 }
