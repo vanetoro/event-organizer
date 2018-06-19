@@ -26,7 +26,6 @@ class HostController < ApplicationController
   post '/create_host' do
     @host = Host.create(username: params[:username], email: params[:email],password: params[:password])
     session[:host_id] = @host.id
-    binding.pry
     redirect "/#{@host.slug}/events"
   end
 end
