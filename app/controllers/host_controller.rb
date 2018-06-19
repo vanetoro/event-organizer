@@ -2,7 +2,6 @@ class HostController < ApplicationController
 
   get '/login' do
     if Helpers.logged_in?(session)
-      binding.pry
       redirect "/#{@host.slug}/events"
     else
       erb :'/hosts/login'
@@ -23,7 +22,6 @@ class HostController < ApplicationController
 
   post '/events' do
     @host = Host.find_by_slug(params[:username])
-    binding.pry
     if @host
     session[:host_id] = @host.id
     redirect "/#{@host.slug}/events"

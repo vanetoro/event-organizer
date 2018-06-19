@@ -1,5 +1,5 @@
 <form action="/edit_event/<%=@event.slug%>"method="post">
   <input type="hidden" id="hidden" name="_method" value="patch">
-  <input type="text" value="<%=@event.name%>">
-  <input type="text" value="<%=@event.date%>">
+  <input type="text" name="name"value="<%=@event.name%>">
+  <input type="text" name="date"value="<%=@event.date%>">
   <input type="submit" value="Edit">

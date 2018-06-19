@@ -46,7 +46,6 @@ class EventController < ApplicationController
    @event.name = params[:name]
    @event.date = params[:date]
    @event.save
-   binding.pry
     redirect "/#{@host.slug}/events"
  end
 
