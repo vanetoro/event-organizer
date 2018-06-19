@@ -7,8 +7,8 @@ class Host < ActiveRecord::Base
     self.username.split(' ').join('-').downcase
   end
 
-  def Host.find_by_slug(host)
-    Host.all.detect{|h| h.slug == host.downcase}
+  def self.find_by_slug(host)
+    self.all.detect{|h| h.slug == host.downcase}
   end
 
 

@@ -23,7 +23,7 @@ class HostController < ApplicationController
 
   post '/events' do
     @host = Host.find_by_slug(params[:username])
-    if @host.authenticate[params[:username]]
+    if @host.authenticate(params[:password])
     session[:host_id] = @host.id
     redirect "/#{@host.slug}/events"
     else

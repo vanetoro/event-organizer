@@ -6,8 +6,8 @@ class Event < ActiveRecord::Base
     self.name.split(' ').join('-').downcase
   end
 
-  def Event.find_by_slug(event)
-    Event.all.detect{|e| e.slug == event.downcase}
+  def self.find_by_slug(event)
+    self.all.detect{|e| e.slug == event.downcase}
   end
 
 end

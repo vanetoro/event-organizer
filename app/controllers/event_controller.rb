@@ -35,8 +35,7 @@ class EventController < ApplicationController
    end
      @host.events << @event
      @venue.events << @event
-     @host.save
-     @venue.save # Do I need to save user and venue here?
+
    redirect "/#{@host.slug}/events"
  end
 
