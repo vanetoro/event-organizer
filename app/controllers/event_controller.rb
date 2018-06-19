@@ -5,28 +5,33 @@ class EventController < ApplicationController
    erb :'/events/create_event'
  end
 
- get '/events/all' do
+ get '/events/:slug' do
+   @event = Event.find_by_slug(params[:slug])
+   erb :'/events/show_event'
+ end
+
+ get '/events/show_all' do
    @events = Event.all
   erb :'/events/all_events'
  end
 
- get '/events/new' do
-
-   erb :'/events/create_event'
- end
-
- get '/events/:slug' do
-   @event = Event.find_by_slug(params[:slug])
-
-   erb :'/events/show_event'
- end
 
  post '/create_event' do
    binding.pry
-   @event = Event.create(params)
+   @event = Event.create(name: params[:name], date: params[:date])
+   if !params[:venue].empty?
+     Venue.find(params[:venue])
+   else
+     Venue.create(name: params[:new_venue],location: params[:location])
+   end
+   redirect "/:slug/events"
+ end
 
-   redirect '/'
-end
+
+ delete '/delete_event/:slug' do
+   Event.find_by_slug(params[:slug]).destroy
+   redirect '/events'
+ end
 
 
 end

@@ -1,6 +1,6 @@
 <h4>Enter the event information below.</h4>
 <form action="/create_event" method="post">
-  Date:(mm/dd/yy)<input type="text" name="day"></br>
+  Date:(mm/dd/yy)<input type="text" name="date"></br>
   Event:<input type="text" name='name'></br>
   Venue: <%@venues.each do |venue|%>
   <%=venue.name%><input type="checkbox" name="venue" value="<%=venue.id%>"id ="<%=venue.id%>">

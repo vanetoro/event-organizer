@@ -1,13 +1,13 @@
 class Event < ActiveRecord::Base
   belongs_to :host
-  has_many :events
+  belongs_to :venue
 
   def slug
-    self.event_name.split(' ').join('-').downcase
+    self.name.split(' ').join('-').downcase
   end
 
   def Event.find_by_slug(event)
-    Event.all.detect{|e| e.slug == event}
+    Event.all.detect{|e| e.slug == event.downcase}
   end
 
 end

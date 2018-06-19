@@ -1,0 +1,8 @@
+<%=@event.name %> on <%=@event.date%> @ <%=@event.venue.name %></br>
+<a href="/edit_event">Edit</a>
+<form action="/delete_event/<%=@event.name%>"method="post">
+  <input type="hidden" id="hidden" name="_method" value="delete">
+<input type="submit" value="Delete">
+<form action="/edit_event/<%=@event.name%>"method="post">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+<input type="submit" value="Edit">
