@@ -23,7 +23,7 @@ class HostController < ApplicationController
 
   post '/events' do
     @host = Host.find_by_slug(params[:username])
-    if @host
+    if @host.authenticate[params[:username]]
     session[:host_id] = @host.id
     redirect "/#{@host.slug}/events"
     else
@@ -35,5 +35,10 @@ class HostController < ApplicationController
     @host = Host.create(username: params[:username], email: params[:email],password: params[:password])
     session[:host_id] = @host.id
     redirect "/#{@host.slug}/events"
+  end
+
+  get '/logout' do
+    session.clear
+    redirect '/login'
   end
 end
