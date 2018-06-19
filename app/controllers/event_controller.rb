@@ -1,7 +1,7 @@
 class EventController < ApplicationController
 
  get '/new' do
-   @venues = Venue.all
+    @venues = Venue.all
    erb :'/events/create_event'
  end
 
@@ -18,12 +18,17 @@ class EventController < ApplicationController
 
  post '/create_event' do
    @event = Event.create(name: params[:name], date: params[:date])
-   if !params[:venue].empty?
-     Venue.find(params[:venue])
-   else
-     Venue.create(name: params[:new_venue],location: params[:location])
+   @host = Host.find(session[:host_id])
+   if !params[:new_venue].empty?
+     @venue = Venue.create(name: params[:new_venue],location: params[:location])
+        else
+     @venue = Venue.find(params[:venue])
    end
-   redirect "/:slug/events"
+     @host.events << @event
+     @venue.events << @event
+     @host.save
+     @venue.save # Do I need to save user and venue here?
+   redirect "/#{@host.slug}/events"
  end
 
 

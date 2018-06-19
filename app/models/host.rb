@@ -8,7 +8,7 @@ class Host < ActiveRecord::Base
   end
 
   def Host.find_by_slug(host)
-    Host.all.detect{|h| h.slug == host}
+    Host.all.detect{|h| h.slug.downcase == host.downcase}
   end
 
 
