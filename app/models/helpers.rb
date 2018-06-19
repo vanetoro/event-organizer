@@ -6,6 +6,6 @@ class Helpers < ActiveRecord::Base
   end
 
   def self.logged_in?(session)
-    !!session[:user_id]
+    !!session[:host_id]
   end
 end
