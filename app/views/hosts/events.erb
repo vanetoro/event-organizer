@@ -1,4 +1,7 @@
 <h3>Welcome <%=@host.username%>!!</h3>
+<form action="/new" method="get">
+  <input type="submit" value="Create Event!">
+</form>
 <h4>These are all your events</h4>
 <ul>
 <%@events.each do |event|%>

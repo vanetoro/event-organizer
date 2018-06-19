@@ -23,7 +23,8 @@ class HostController < ApplicationController
   end
 
   post '/create_host' do
-    @host = Host.create(params)
+    @host = Host.create(username: params[:username], email: params[:email],password: params[:password])
+
     redirect "/#{@host.slug}/events"
   end
 end

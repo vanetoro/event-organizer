@@ -17,7 +17,6 @@ class EventController < ApplicationController
 
 
  post '/create_event' do
-   binding.pry
    @event = Event.create(name: params[:name], date: params[:date])
    if !params[:venue].empty?
      Venue.find(params[:venue])
