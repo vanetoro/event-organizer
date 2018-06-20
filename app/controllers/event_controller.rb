@@ -6,7 +6,6 @@ class EventController < ApplicationController
  end
 
  get '/events/show_all' do
-  #  binding.pry
    @events = Event.all
 
   erb :'/events/all_events'
@@ -28,12 +27,21 @@ class EventController < ApplicationController
  end
 
 
- post '/create_event' do
+ post '/events/create_event' do
+   if params[:name].empty? || params[:date].empty?
+    #  binding.pry
+     redirect '/new'
+  else
    @event = Event.create(name: params[:name], date: params[:date])
    @host = Host.find(session[:host_id])
-   if !params[:new_venue].empty?
+ end
+   if params[:new_venue].empty? && params[:venue] == nil
+    #  binding.pry
+     redirect '/new'
+   elsif !params[:new_venue].empty?
+
      @venue = Venue.create(name: params[:new_venue],location: params[:location])
-        else
+   else
      @venue = Venue.find(params[:venue])
    end
      @host.events << @event
@@ -42,7 +50,7 @@ class EventController < ApplicationController
    redirect "/events"
  end
 
- patch '/edit_event/:slug' do
+ patch '/events/:slug/edit' do
    @event = Event.find_by_slug(params[:slug])
    @host = Host.find(session[:host_id])
    @event.name = params[:name]
@@ -51,7 +59,7 @@ class EventController < ApplicationController
     redirect "/events"
  end
 
- delete '/delete_event/:slug' do
+ delete 'events/:slug/delete' do
    @event =  Event.find_by_slug(params[:slug])
    @host = @event.host
    @event.destroy

@@ -1,5 +1,6 @@
 <%@events.each do |event|%>
 <a href="/events/<%=event.slug%>">Event: <%=event.name%></br>
 Date: <%=event.date%></br></a>
+Hosted by:<%=event.host.username%></br>
 </br>
 <%end%>

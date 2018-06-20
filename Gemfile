@@ -1,3 +1,5 @@
+source 'http://rubygems.org'
+
 gem 'pry'
 gem 'bcrypt'
 gem 'activerecord', :require => 'active_record'
@@ -7,3 +9,4 @@ gem 'sqlite3'
 gem 'thin'
 gem 'rake'
 gem 'require_all'
+gem 'rack-flash3'

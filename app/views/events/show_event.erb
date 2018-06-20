@@ -1,10 +1,10 @@
 <a href='/events'> Your Events</a><a href='/events/show_all'> All Events</a></br>
 
 <%=@event.name %> on <%=@event.date%> @ <%=@event.venue.name %>
-<form action="/delete_event/<%=@event.slug%>"method="post">
+<form action="/events/<%=@event.slug%>/delete"method="post">
   <input type="hidden" id="hidden" name="_method" value="delete">
 <input type="submit" value="Delete">
 </form>
-<form action="/edit_event/<%=@event.slug%>"method="get">
+<form action="/events/<%=@event.slug%>/edit"method="get">
 <input type="submit" value="Edit">
 </form>
