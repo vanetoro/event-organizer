@@ -1,5 +1,12 @@
-<div class='nav'><a href='/events'> Your Events</a><a href='/events/show_all'> All
-Events</a><a href='/logout'>Logout</a></div>
+<div class='nav'>
+  <div id='nav_links_right'><a href='/events'> Your Events</a><a href='/events/show_all'> All
+Events</a><a href='/logout'>Logout</a>
+</div>
+<form action="/new" method="get">
+  <input type="submit" value="Create Event!">
+</form>
+
+</div>
 
 
 <h3>Welcome <%=@host.username%>!!</h3>
@@ -10,9 +17,3 @@ Events</a><a href='/logout'>Logout</a></div>
 <a href="/events/<%=event.slug%>"><li><%=event.name %> on <%=event.date%> @ <%=event.venue.name %> </li></a>
 <%end%>
 </ul>
-<form action="/new" method="get">
-  <input type="submit" value="Create Event!">
-</form>
-<form action="/logout" method="get">
-  <input type="submit" value="Logout">
-</form>
