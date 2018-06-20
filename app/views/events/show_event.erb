@@ -1,4 +1,4 @@
-<a href='/events'> Your Events</a><a href='/events/show_all'> All Events</a></br>
+<div class='links'><a href='/events'> Your Events</a><a href='/events/show_all'> All Events</a></div>
 
 <%=@event.name %> on <%=@event.date%> @ <%=@event.venue.name %>
 <form action="/events/<%=@event.slug%>/delete"method="post">
