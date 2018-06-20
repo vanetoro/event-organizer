@@ -59,11 +59,15 @@ class EventController < ApplicationController
     redirect "/events"
  end
 
- delete 'events/:slug/delete' do
+ delete '/events/:slug/delete' do
    @event =  Event.find_by_slug(params[:slug])
    @host = @event.host
-   @event.destroy
-   redirect "/events"
+   if @host == Helpers.current_user(session)
+     @event.destroy
+     redirect "/events/show_all"
+   else
+     redirect '/events'
+   end
  end
 
 
