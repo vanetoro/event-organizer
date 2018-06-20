@@ -5,3 +5,34 @@ a{
 a:visited{
   color: #606060;
 }
+
+.nav{
+  background-color: #86A9E5;
+  padding: 10px;
+}
+
+.nav a{
+  align-content: right;
+  color: white;
+  padding: 0px 5px;
+  font-size: 1.2em;
+  border: 1px solid #D2D3D4;
+  border-radius: 10px;
+}
+
+.nav a:hover {
+  color: black;
+}
+
+#header{
+  background: #70C7F9;
+
+}
+.buttons{
+  float: left;
+  align-items: baseline;
+}
+
+form{
+  margin-top: 15px;
+}
