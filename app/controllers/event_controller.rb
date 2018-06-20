@@ -10,13 +10,12 @@ class EventController < ApplicationController
 
   erb :'/events/all_events'
  end
+
  get '/events/:slug' do
-   if Helpers.current_user(session)
      @event = Event.find_by_slug(params[:slug])
+
+     @host = Host.find(session[:host_id])
      erb :'/events/show_event'
-   else
-     redirect '/login'
-   end
  end
 
 
@@ -29,7 +28,6 @@ class EventController < ApplicationController
 
  post '/events/create_event' do
    if params[:name].empty? || params[:date].empty?
-    #  binding.pry
      redirect '/new'
   else
    @event = Event.create(name: params[:name], date: params[:date])
