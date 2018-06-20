@@ -1,9 +1,11 @@
-<div class='nav'><a href='/events'> Your Events</a><a href='/events/show_all'> All
-Events</a><a href='/logout'>Logout</a></div>
-
+<div class="nav"><a href='/events'> Your Events</a><a href='/events/show_all'> All
+Events</a><a href='/edit'>Profile</a><a href='/logout'>Logout</a>
+</div></br>
+<h2>Events</h2>
 <%@events.each do |event|%>
-<a href="/events/<%=event.slug%>">Event: <%=event.name%></br>
-Date: <%=event.date%></br></a>
-Hosted by:<%=event.host.username%></br>
+<a href="/events/<%=event.slug%>"> <%=event.name%> @ <%=event.venue.name%></br></a>
+Date: <%=event.date%></br>
+
+Hosted by: <%=event.host.username%></br>
 </br>
 <%end%>
