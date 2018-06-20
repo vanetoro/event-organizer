@@ -1,9 +1,16 @@
 <div class='nav'><a href='/events'> Your Events</a><a href='/events/show_all'> All
 Events</a><a href='/logout'>Logout</a></div>
 
-<form action="/edit_event/<%=@event.slug%>"method="post">
+<form action="/events/<%=@event.slug%>"method="post">
   <input type="hidden" id="hidden" name="_method" value="patch">
   <input type="text" name="name"value="<%=@event.name%>">
-  <input type="text" name="date"value="<%=@event.date%>">
+  <input type="text" name="date"value="<%=@event.date%>"></br>
+  Venue: <%@venues.each do |venue|%>
+  <%=venue.name%><input type="radio" name="venue" value="<%=venue.id%>"id ="<%=venue.id%>">
+  <%end%></br>
+  If the venue isn't listed above please add it
+  Name: <input type="text" name="new_venue">
+  Location: <input type="text" name="location"></br>
+  <input type="submit" value="Create Event">
   <input type="submit" value="Edit">
 </form>

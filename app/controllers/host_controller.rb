@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class HostController < ApplicationController
+  use Rack::Flash
 
   get '/login' do
     if Helpers.logged_in?(session)
@@ -45,6 +48,7 @@ class HostController < ApplicationController
       @host.email = params[:email]
       @host.password = params[:password]
       @host.save
+      binding.pry
       redirect '/events'
     else
       redirect '/login'

@@ -62,6 +62,11 @@ font-family: 'Gudea', sans-serif;
   align-items: baseline;
 }
 
+.buttons_left {
+  float: left;
+  padding-right: 5px;
+}
+
 #login_form{
  margin-top:  10px;
 }

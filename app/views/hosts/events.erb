@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <div class='nav'>
   <div id='nav_links_right'><a href='/events'> Your Events</a><a href='/events/show_all'> All
 Events</a><a href='/edit'>Profile</a><a href='/logout'>Logout</a>

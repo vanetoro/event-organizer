@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class EventController < ApplicationController
+  use Rack::Flash
 
  get '/new' do
     @venues = Venue.all
@@ -20,8 +23,9 @@ class EventController < ApplicationController
 
 
 
- get '/edit_event/:slug' do
+ get '/events/:slug/edit' do
    @event = Event.find_by_slug(params[:slug])
+   @venues = Venue.all
    erb :'/events/edit_event'
  end
 
@@ -48,13 +52,16 @@ class EventController < ApplicationController
    redirect "/events"
  end
 
- patch '/events/:slug/edit' do
+ patch '/events/:slug' do
    @event = Event.find_by_slug(params[:slug])
    @host = Host.find(session[:host_id])
    @event.name = params[:name]
    @event.date = params[:date]
    @event.save
-    redirect "/events"
+
+   flash[:message] = 'Successfully updated event.'
+
+  redirect "/events"
  end
 
  delete '/events/:slug/delete' do

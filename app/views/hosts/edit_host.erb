@@ -12,8 +12,8 @@ If you would like to edit any of your info just type in the new information and 
 </br>
 <form action="/edit" method='post' >
   <input type="hidden"  id="hidden" name="_method" value="patch">
-Name: <input type="text" name="username" ></br>
-E-Mail: <input type="text" name="email" ></br>
+Username: <input type="text" name="username" value="<%=@host.username%>"></br>
+E-Mail: <input type="text" name="email" value='<%=@host.email%>' ></br>
 Password: <input type="text" name="password" ></br>
 </br>
 <input type="submit" value="Edit profile">
