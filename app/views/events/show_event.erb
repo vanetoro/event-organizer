@@ -1,7 +1,6 @@
-<div class='nav'><a href='/events'> Your Events</a><a href='/events/show_all'> All
-Events</a><a href='/logout'>Logout</a></div>
-
-
+<div class="nav"><a href='/events'> Your Events</a><a href='/events/show_all'> All
+Events</a><a href='/edit'>Profile</a><a href='/logout'>Logout</a>
+</div>
 <%=@event.name %> on <%=@event.date%> @ <%=@event.venue.name %>
 <form action="/events/<%=@event.slug%>/delete"method="post">
   <input type="hidden" id="hidden" name="_method" value="delete">
