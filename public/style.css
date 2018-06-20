@@ -39,9 +39,9 @@ a:visited{
   align-items: baseline;
 }
 
-/*form{
-  margin-top: 15px;
-}*/
+#login_form{
+ margin-top:  10px;
+}
 
 h1{
   padding-left: 10px;

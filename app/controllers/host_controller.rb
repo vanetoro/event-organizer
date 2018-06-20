@@ -28,6 +28,29 @@ class HostController < ApplicationController
     end
   end
 
+  get '/edit' do
+    @host = Host.find(session[:host_id])
+    if Helpers.logged_in?(session)
+      @events = @host.events
+      erb :'/hosts/edit_host'
+    else
+      redirect '/login'
+    end
+  end
+
+  patch '/edit' do
+    @host = Host.find(session[:host_id])
+    if Helpers.logged_in?(session)
+      @host.username = params[:username]
+      @host.email = params[:email]
+      @host.password = params[:password]
+      @host.save
+      redirect '/events'
+    else
+      redirect '/login'
+    end
+  end
+
   post '/events' do
     @host = Host.find_by_slug(params[:username])
     if @host.authenticate(params[:password])

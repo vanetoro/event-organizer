@@ -1,0 +1,18 @@
+<h3>Profile Page</h3>
+
+<h3>Here is your information:</br></h3>
+Username: <%=@host.username%></br>
+E-mail: <%=@host.email%></br>
+<%=@host.password%></br>
+
+
+If you would like to edit any of your info just type in the new information and press 'Edit Profile'</br>
+</br>
+<form action="/edit" method='post' >
+  <input type="hidden"  id="hidden" name="_method" value="patch">
+Name: <input type="text" name="username" ></br>
+E-Mail: <input type="text" name="email" ></br>
+Password: <input type="text" name="password" ></br>
+</br>
+<input type="submit" value="Edit profile">
+</form>
