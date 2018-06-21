@@ -4,6 +4,7 @@ class EventController < ApplicationController
   use Rack::Flash
 
  get '/new' do
+    @host = Helpers.current_user(session)
     @venues = Venue.all
    erb :'/events/create_event'
  end
@@ -25,7 +26,7 @@ class EventController < ApplicationController
 
  get '/events/:slug/edit' do
     @event = Event.find_by_slug(params[:slug])
-   if Helpers.logged_in?(session) && Helpers.current_user(session) == @event.host_id
+   if Helpers.logged_in?(session) && Helpers.current_user(session).id == @event.host_id
      @venues = Venue.all
      erb :'/events/edit_event'
    else
@@ -46,33 +47,35 @@ class EventController < ApplicationController
     flash[:message] = 'Please make sure to choose a venue or enter a new venue'
      redirect '/new'
    elsif !params[:new_venue].empty?
-
      @venue = Venue.create(name: params[:new_venue],location: params[:location])
    else
      @venue = Venue.find(params[:venue])
    end
      @host.events << @event
      @venue.events << @event
-
-   redirect "/events"
+     flash[:message] = 'You have successfully added a new event!'
+     redirect "/events"
  end
 
  patch '/events/:slug' do
    @event = Event.find_by_slug(params[:slug])
    @host = Host.find(session[:host_id])
-   @event.name = params[:name]
-   @event.date = params[:date]
-   @event.save
-
-   flash[:message] = 'Successfully updated event.'
-
-  redirect "/events"
+   if Helpers.logged_in?(session) && Helpers.current_user(session).id == @event.host_id
+     @event.name = params[:name]
+     @event.date = params[:date]
+     @event.save
+     flash[:message] = 'Successfully updated event.'
+     redirect "/events"
+   else
+     flash[:message] = 'You cannot edit this event'
+     redirect "/events"
+   end
  end
 
  delete '/events/:slug/delete' do
    @event =  Event.find_by_slug(params[:slug])
    @host = @event.host
-   if @host == Helpers.current_user(session)
+   if @host.id == Helpers.current_user(session).id
      @event.destroy
      redirect "/events/show_all"
    else
