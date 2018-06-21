@@ -5,7 +5,7 @@ Events</a><a href='/logout'>Logout</a></div>
   <input type="hidden" id="hidden" name="_method" value="patch">
   Event Name:<input type="text" name="name"value="<%=@event.name%>"></br>
   Date (dd/mm/yy):<input type="text" name="date"value="<%=@event.date%>"></br>
-  Venue: <%@venues.each do |venue|%>
+  Venue: <%@venues.each do |venue|%></br>
   <%=venue.name%><input type="radio" name="venue" value="<%=venue.id%>"id ="<%=venue.id%>" <%='checked' if @event.venue.id == venue.id%>>
   <%end%></br>
   </br>

@@ -82,7 +82,7 @@ class EventController < ApplicationController
    if @host.id == Helpers.current_user(session).id
      @event.destroy
      flash[:message] = 'You successfully deleted this event.'
-     redirect "/events/"
+     redirect "/events"
    else
      redirect '/events'
    end
