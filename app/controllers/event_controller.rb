@@ -24,14 +24,19 @@ class EventController < ApplicationController
 
 
  get '/events/:slug/edit' do
-   @event = Event.find_by_slug(params[:slug])
-   @venues = Venue.all
-   erb :'/events/edit_event'
+    @event = Event.find_by_slug(params[:slug])
+   if Helpers.logged_in?(session) && Helpers.current_user(session) == @event.host_id
+     @venues = Venue.all
+     erb :'/events/edit_event'
+   else
+        redirect '/events'
+    end
  end
 
 
  post '/events/create_event' do
    if params[:name].empty? || params[:date].empty?
+     flash[:message] = 'Please make sure to enter Event name and date'
      redirect '/new'
   else
    @event = Event.create(name: params[:name], date: params[:date])
