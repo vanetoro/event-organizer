@@ -5,9 +5,14 @@
   border-radius: 10px;
 }
 
-#nav_links_right{
+.nav_links_right{
   float: right;
 }
+
+.nav_links_left{
+
+}
+
 
 .nav a{
   align-content: right;

@@ -48,7 +48,6 @@ class HostController < ApplicationController
       @host.email = params[:email]
       @host.password = params[:password]
       @host.save
-      binding.pry
       redirect '/events'
     else
       redirect '/login'
@@ -66,9 +65,14 @@ class HostController < ApplicationController
   end
 
   post '/create_host' do
+    if Host.find_by(username: params[:username]) || Host.find_by(email: params[:email])
+      flash[:message] = 'Username and/or E-mail is already taken please try another one'
+      redirect '/signup'
+    else
     @host = Host.create(username: params[:username], email: params[:email],password: params[:password])
     session[:host_id] = @host.id
     redirect "/events"
+  end
   end
 
   get '/logout' do

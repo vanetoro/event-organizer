@@ -1,5 +1,10 @@
 <h3>Please sign up</h3>
 
+<div class="flash_message">
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+</div>
 <form action="/create_host" method="post">
 Username: <input type="text" name="username"> </br>
 E-mail: &nbsp &nbsp &nbsp<input type="text" name="email"> </br>
