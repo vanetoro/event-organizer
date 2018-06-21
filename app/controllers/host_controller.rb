@@ -68,7 +68,7 @@ class HostController < ApplicationController
   post '/create_host' do
     @host = Host.create(username: params[:username], email: params[:email],password: params[:password])
     session[:host_id] = @host.id
-    redirect "/#{@host.slug}/events"
+    redirect "/events"
   end
 
   get '/logout' do

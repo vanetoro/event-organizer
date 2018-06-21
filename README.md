@@ -1,1 +1,1 @@
-# event-organizer
+Event Organizer page able to create new users or edit existing user information. Each user has their own page where they can view, edit or create new events. Users will also be able to see other users events.
