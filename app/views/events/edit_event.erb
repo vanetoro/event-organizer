@@ -3,13 +3,14 @@ Events</a><a href='/logout'>Logout</a></div>
 
 <form action="/events/<%=@event.slug%>"method="post">
   <input type="hidden" id="hidden" name="_method" value="patch">
-  <input type="text" name="name"value="<%=@event.name%>">
-  <input type="text" name="date"value="<%=@event.date%>"></br>
+  Event Name:<input type="text" name="name"value="<%=@event.name%>"></br>
+  Date (dd/mm/yy):<input type="text" name="date"value="<%=@event.date%>"></br>
   Venue: <%@venues.each do |venue|%>
-  <%=venue.name%><input type="radio" name="venue" value="<%=venue.id%>"id ="<%=venue.id%>">
+  <%=venue.name%><input type="radio" name="venue" value="<%=venue.id%>"id ="<%=venue.id%>" <%='checked' if @event.venue.id == venue.id%>>
   <%end%></br>
-  If the venue isn't listed above please add it
-  Name: <input type="text" name="new_venue">
+  </br>
+  If the venue isn't listed above please add it</br>
+  Name: <input type="text" name="new_venue"></br>
   Location: <input type="text" name="location"></br>
   <input type="submit" value="Edit">
 </form>
