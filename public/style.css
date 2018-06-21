@@ -51,7 +51,9 @@ h1{
   margin: 0;
 }
 
-
+.flash_message{
+  color: red;
+}
 
 body{
 

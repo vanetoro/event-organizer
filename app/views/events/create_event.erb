@@ -1,6 +1,9 @@
 <div class='nav'><a href='/events'> Your Events</a><a href='/events/show_all'> All
 Events</a><a href='/logout'>Logout</a></div>
-
+<div class='flash_message'><% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+</div>
 <h4>Enter the event information below.</h4>
 <form action="/events/create_event" method="post">
   Date:(mm/dd/yy)<input type="text" name="date"></br>

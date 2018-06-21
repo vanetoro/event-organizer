@@ -38,7 +38,7 @@ class EventController < ApplicationController
    @host = Host.find(session[:host_id])
  end
    if params[:new_venue].empty? && params[:venue] == nil
-    #  binding.pry
+    flash[:message] = 'Please make sure to choose a venue or enter a new venue'
      redirect '/new'
    elsif !params[:new_venue].empty?
 
