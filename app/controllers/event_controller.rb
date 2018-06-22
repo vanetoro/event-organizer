@@ -15,9 +15,8 @@ class EventController < ApplicationController
   erb :'/events/all_events'
  end
 
- get '/events/:slug' do
-     @event = Event.find_by_slug(params[:slug])
-
+ get '/events/:id' do
+     @event = Event.find(params[:id])
      @host = Host.find(session[:host_id])
      erb :'/events/show_event'
  end
@@ -27,7 +26,7 @@ class EventController < ApplicationController
    if params[:name].empty? || params[:date].empty?
      flash[:message] = 'Please make sure to enter Event name and date'
      redirect '/new'
-   else
+   elsif
      @event = Event.create(name: params[:name], date: params[:date])
      @host = Host.find(session[:host_id])
   end

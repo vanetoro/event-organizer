@@ -55,7 +55,11 @@ class HostController < ApplicationController
   end
 
   post '/events' do
-    @host = Host.find_by_slug(params[:username])
+      @host = Host.find_by_slug(params[:username])
+    if @host == nil
+      flash[:message] = "We don't have a user with the username please signup first"
+      redirect '/signup'
+    end
     if @host.authenticate(params[:password])
     session[:host_id] = @host.id
     redirect "/events"
