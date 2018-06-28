@@ -3,7 +3,7 @@ Events</a><a href='/edit'>Profile</a><a href='/logout'>Logout</a>
 </div></br>
 <h2>Events</h2>
 <%@events.each do |event|%>
-<a href="/events/<%=event.slug%>"> <%=event.name%> @ <%=event.venue.name%></br></a>
+<a href="/events/<%=event.id%>"> <%=event.name%> @ <%=event.venue.name%></br></a>
 Date: <%=event.date%></br>
 
 Hosted by: <%=event.host.username%></br>

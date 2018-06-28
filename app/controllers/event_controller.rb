@@ -4,7 +4,7 @@ class EventController < ApplicationController
   use Rack::Flash
 
  get '/new' do
-    @host = Helpers.current_user(session)
+    @host = current_user
     @venues = Venue.all
    erb :'/events/create_event'
  end
@@ -45,9 +45,9 @@ class EventController < ApplicationController
  end
 
 
- get '/events/:slug/edit' do
-    @event = Event.find_by_slug(params[:slug])
-   if Helpers.logged_in?(session) && Helpers.current_user(session).id == @event.host_id
+ get '/events/:id/edit' do
+    @event = Event.find(params[:id])
+   if logged_in? && current_user.id == @event.host_id
      @venues = Venue.all
      erb :'/events/edit_event'
    else
@@ -56,12 +56,12 @@ class EventController < ApplicationController
  end
 
  patch '/events/:slug' do
-   @event = Event.find_by_slug(params[:slug])
-   @host = Host.find(session[:host_id])
-   if Helpers.logged_in?(session) && Helpers.current_user(session).id == @event.host_id
+   @event = Event.find(params[:id])
+   @host = current_user
+   if logged_in?(session) && current_user.id == @event.host_id
      @event.name = params[:name]
      @event.date = params[:date]
-      if  !params[:new_venue].empty?
+      if !params[:new_venue].empty?
         @event.venue = Venue.create(name: params[:new_venue],location: params[:location])
       else
         @event.venue = Venue.find(params[:venue])
@@ -76,9 +76,9 @@ class EventController < ApplicationController
  end
 
  delete '/events/:slug/delete' do
-   @event =  Event.find_by_slug(params[:slug])
+   @event =  Event.id(params[:id])
    @host = @event.host
-   if @host.id == Helpers.current_user(session).id
+   if @host.id == current_user.id
      @event.destroy
      flash[:message] = 'You successfully deleted this event.'
      redirect "/events"

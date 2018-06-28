@@ -7,7 +7,7 @@ Events</a><a href='/edit'>Profile</a><a href='/logout'>Logout</a>
 Event is hosted by <%=@event.host.username %>
 <% if @host.id == @event.host_id%></br>
 <div class= 'buttons_left'>
-  <form action="/events/<%=@event.slug%>/delete"method="post">
+  <form action="/events/<%=@event.id%>/delete"method="post">
     <input type="hidden" id="hidden" name="_method" value="delete">
     <input type="submit" value="Delete">
   </form>

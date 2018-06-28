@@ -13,5 +13,16 @@ end
    erb :index
  end
 
+ helpers do
+     def current_user
+        Host.find(session[:host_id])
+     end
+
+    def logged_in?
+      !!session[:host_id]
+    end
+
+ end
+
 
 end

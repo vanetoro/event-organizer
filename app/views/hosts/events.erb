@@ -17,6 +17,6 @@ Events</a><a href='/edit'>Profile</a><a href='/logout'>Logout</a>
 <h4>These are all your events</h4>
 <ul>
 <%@events.each do |event|%>
-<a href="/events/<%=event.slug%>"><li><%=event.name %> on <%=event.date%> @ <%=event.venue.name %> </li></a>
+<a href="/events/<%=event.id%>"><li><%=event.name %> on <%=event.date%> @ <%=event.venue.name %> </li></a>
 <%end%>
 </ul>

@@ -4,8 +4,8 @@ class HostController < ApplicationController
   use Rack::Flash
 
   get '/login' do
-    if Helpers.logged_in?(session)
-      @host = Host.find(session[:host_id])
+    if logged_in?
+      current_user
       redirect "/events"
     else
       erb :'/hosts/login'
@@ -13,8 +13,8 @@ class HostController < ApplicationController
   end
 
   get '/signup' do
-    if Helpers.logged_in?(session)
-      @host = Host.find(session[:host_id])
+    if logged_in?
+      current_user
       redirect "/events"
     else
       erb :'/hosts/signup'
@@ -22,8 +22,8 @@ class HostController < ApplicationController
   end
 
   get '/events' do
-    @host = Host.find(session[:host_id])
-    if Helpers.logged_in?(session)
+    @host = current_user
+    if logged_in?
       @events = @host.events
       erb :'/hosts/events'
     else
@@ -32,8 +32,8 @@ class HostController < ApplicationController
   end
 
   get '/edit' do
-    @host = Host.find(session[:host_id])
-    if Helpers.logged_in?(session)
+    @host = current_user
+    if logged_in?
       @events = @host.events
       erb :'/hosts/edit_host'
     else
@@ -42,8 +42,8 @@ class HostController < ApplicationController
   end
 
   patch '/edit' do
-    @host = Host.find(session[:host_id])
-    if Helpers.logged_in?(session)
+    @host = current_user
+    if logged_in?
       @host.username = params[:username]
       @host.email = params[:email]
       @host.password = params[:password]
